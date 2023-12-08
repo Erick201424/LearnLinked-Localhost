@@ -21,6 +21,9 @@ import { GetStudentByIdController } from "./controller/getStudentByIdController"
 import { GetAllStudentsUseCase } from "../application/getAllStudentsUseCase";
 import { GetAllStudentsController } from "./controller/getAllStudentsController";
 
+import { GetStudentsByEventUseCase } from "../application/getStudentsByEventUseCase";
+import { GetStudentsByEventController } from "./controller/getStudentsByEventController";
+
 export const mariadbRepository = new MariaDBRepository();
 
 export const createStudentUseCase = new CreateStudentUseCase(mariadbRepository);
@@ -43,3 +46,6 @@ export const getStudentByIdController = new GetStudentByIdController(getStudentB
 
 export const getAllStudentsUseCase = new GetAllStudentsUseCase(mariadbRepository);
 export const getAllStudentsController = new GetAllStudentsController(getAllStudentsUseCase);
+
+export const getStudentsByEventUseCase = new GetStudentsByEventUseCase(mariadbRepository);
+export const getStudentsByEventController = new GetStudentsByEventController(getStudentsByEventUseCase);

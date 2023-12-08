@@ -46,3 +46,11 @@ export class securityInformation {
         public securityAnswer: string
     ) { }
 }
+
+export class StudentsByEvent {
+    constructor(
+        public name: string,
+        public lastname: string,
+        public phone: string,
+    ) { }
+}
