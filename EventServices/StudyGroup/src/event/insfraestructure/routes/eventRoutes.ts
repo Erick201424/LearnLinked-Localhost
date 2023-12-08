@@ -6,6 +6,7 @@ import {
     cancelEventController,
     getByCommunityIdController
 } from "../dependencies";
+import { validateToken } from "../../../helpers/token.helper";
 
 export const eventRouter = Router();
 
@@ -13,10 +14,10 @@ eventRouter.get('/rutine', (req: Request, res: Response) => {
     res.status(200).send('Rutina ejecutáda con éxito');
 })
 
-eventRouter.post('/', createEventController.execute.bind(createEventController));
-eventRouter.get('/:id', getByIdEventController.execute.bind(getByIdEventController));
-eventRouter.get('/community/:id_community', getByCommunityIdController.execute.bind(getByCommunityIdController));
-eventRouter.get('/', getAllEventsController.execute.bind(getAllEventsController));
-eventRouter.put('/:id', cancelEventController.execute.bind(cancelEventController));
+eventRouter.post('/', validateToken, createEventController.execute.bind(createEventController));
+eventRouter.get('/:id', validateToken, getByIdEventController.execute.bind(getByIdEventController));
+eventRouter.get('/community/:id_community', validateToken, getByCommunityIdController.execute.bind(getByCommunityIdController));
+eventRouter.get('/', validateToken, getAllEventsController.execute.bind(getAllEventsController));
+eventRouter.put('/:id', validateToken, cancelEventController.execute.bind(cancelEventController));
 
 // EventRouter.put('/:id', updateEventController.execute.bind(updateEventController));

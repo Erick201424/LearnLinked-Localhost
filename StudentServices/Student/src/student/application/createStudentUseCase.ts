@@ -2,7 +2,7 @@ import { Student } from "../domain/entities/student";
 import { StudentRepository } from "../domain/repositories/studentRepository";
 import { ValidatorCreateStudent } from "../domain/validators/studentValidation";
 import { validate } from "class-validator";
-import { hashPassword } from "../../helpers/bycript.service";
+import { hashPassword } from "../../../../../EventServices/StudyGroup/src/helpers/bycript.service";
 
 export class CreateStudentUseCase {
     constructor(readonly studentRepository: StudentRepository) { }

@@ -9,7 +9,7 @@ import {
     getAllStudentsController,
     getStudentsByEventController
 } from "../dependencies";
-import { validateToken, verifyToken } from "../../../helpers/token.helper";
+import { validateToken, verifyToken } from "../../../../../../EventServices/StudyGroup/src/helpers/token.helper";
 
 export const studentRouter = Router();
 
@@ -24,4 +24,4 @@ studentRouter.put('/recovery/password', updatePasswordByEmailController.execute.
 studentRouter.put('/:id', validateToken, updateStudentController.execute.bind(updateStudentController));
 studentRouter.get('/:id', getStudentByIdController.execute.bind(getStudentByIdController));
 studentRouter.get('/list/students', validateToken, getAllStudentsController.execute.bind(getAllStudentsController));
-studentRouter.post('/students/assitance', getStudentsByEventController.execute.bind(getStudentsByEventController));
+studentRouter.get('/students/assistance', getStudentsByEventController.execute.bind(getStudentsByEventController));

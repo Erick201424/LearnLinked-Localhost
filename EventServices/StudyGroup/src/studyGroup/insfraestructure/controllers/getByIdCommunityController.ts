@@ -22,6 +22,7 @@ export class GetByIdCommunityController {
 
             console.log("userID: ", userId);
             // Hacer una petición GET al microservicio de estudiantes
+            console.log(`http://localhost:3002/user/${userId}`);
             const studentResponse = await axios.get(`http://localhost:3002/user/${userId}`);
 
             // Verificar si la petición al microservicio fue exitosa

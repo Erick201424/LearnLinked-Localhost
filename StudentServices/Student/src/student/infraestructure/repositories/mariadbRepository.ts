@@ -1,8 +1,8 @@
 import { query } from "../../../database/mariadb";
 import { Student, StudentInformation, StudentLogin, StudentsByEvent, securityInformation } from "../../domain/entities/student";
 import { StudentRepository } from "../../domain/repositories/studentRepository";
-import { generateToken } from "../../../helpers/token.helper";
-import { comparePasswords, hashPassword } from "../../../helpers/bycript.service";
+import { generateToken } from "../../../../../../EventServices/StudyGroup/src/helpers/token.helper";
+import { comparePasswords, hashPassword } from "../../../../../../EventServices/StudyGroup/src/helpers/bycript.service";
 
 export class MariaDBRepository implements StudentRepository {
 

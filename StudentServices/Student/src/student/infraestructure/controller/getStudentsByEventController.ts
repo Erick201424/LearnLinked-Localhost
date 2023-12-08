@@ -6,18 +6,19 @@ export class GetStudentsByEventController {
 
     async execute(req: Request, res: Response) {
         try {
-            // Obtén los IDs de eventos desde el cuerpo de la solicitud (req.body)
-            const { userIds } = req.body;
+            // Obtén los IDs de eventos desde la consulta en la URL (req.query)
+            const { users: userIdsParam } = req.query;
 
-            console.log(userIds);
-
-            // Validación: Asegúrate de que userIds es un array
-            if (!Array.isArray(userIds)) {
+            // Validación: Asegúrate de que userIdsParam es una cadena
+            if (typeof userIdsParam !== 'string') {
                 return res.status(400).send({
                     status: "error",
-                    message: "userIds debe ser un array de IDs de usuario",
+                    message: "users debe ser una cadena de IDs de usuario separada por comas",
                 });
             }
+
+            // Convierte la cadena de userIds a un array de números
+            const userIds: number[] = userIdsParam.split(',').map((id) => parseInt(id, 10));
 
             // Ejecuta el caso de uso con los IDs de eventos
             const studentList = await this.getStudentsUseCase.execute(userIds);
@@ -28,16 +29,15 @@ export class GetStudentsByEventController {
             // Devuelve la respuesta exitosa con la lista de estudiantes
             if (studentList) {
                 return res.status(201).send({
-                    status: "succes",
+                    status: "success",
                     data: {
                         studentList
                     }
                 })
-            }
-            else {
+            } else {
                 return res.status(500).send({
                     status: "error",
-                    message: "An unexpected error occurred while userowner"
+                    message: "An unexpected error occurred while getting users by event"
                 });
             }
 

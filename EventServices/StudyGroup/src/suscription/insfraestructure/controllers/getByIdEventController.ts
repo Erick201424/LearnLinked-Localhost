@@ -25,17 +25,25 @@ export class GetByIdEventController {
             const userIds: number[] = listSuscriptions.map((subscription: any) => subscription.user);
             console.log("UserIds:", userIds);
 
+            const usersQueryParam = userIds.join(',');
+            console.log('usersQueryParam: ', usersQueryParam);
+            // const studentsResponse = await axios.get(
+            //     `http://localhost:3002/user/students/assitance?users=${usersQueryParam}`
+            // );
+
+
+            //http://localhost:3002/user/students/assitance?users=1,2,2,
+            console.log('Está entrando aquí');
             try {
-                const studentsResponse = await axios.post(
-                    `http://localhost:3002/user/students/assitance`,
-                    {
-                        userIds: userIds,
-                    }
+                const studentsResponse = await axios.get(
+                    `http://localhost:3002/user/students/assistance?users=${usersQueryParam}`
+                    // `http://localhost:3002/user/students/assistance?users=1,2`
                 );
 
-                console.log("Request to student service successful. Response:", studentsResponse.data);
+                // console.log("Request to student service successful. Response:", studentsResponse.data);
+                console.log("Estado de la respuesta del data:", studentsResponse.data);
 
-                if (studentsResponse.data.status === "succes") {
+                if (studentsResponse.data.status === "success") {
                     const userDataList = studentsResponse.data.data.studentList.map((student: any) => ({
                         name: student.name,
                         lastname: student.lastname,
